@@ -38,7 +38,7 @@ const postElements = [
     {
         id: 4,
         name: 'Alfredo Nero',
-        picsProfile:'https://unsplash.it/300/300?image=38',
+        picsProfile: null,
         date: '06-20-2022',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptate dolorum ex! Aut repellendus eum rem tempore, ipsa optio magnam ad dolore alias voluptas. Nemo tenetur excepturi rem ducimus totam!',
         image:'https://i.picsum.photos/id/28/600/300.jpg?hmac=qff9TJVVoguAsM4oYT2isXBnCfma0HL3rqIRIasvIEM',
@@ -136,14 +136,15 @@ function drawallPosts(postArray) {
 
         // Splitto la data:
         let splitDate = date.split("-");
-        // console.log(splitDate[0])
-        // console.log(splitDate[1])
-        // console.log(splitDate[2])
 
         // ricompongo la data in formato italiano:
         const italianDate = splitDate[1] + '-' + splitDate[0] + '-' + splitDate[2];
-        console.log(italianDate)
 
+        // splitto le iniziali del nome utente:
+        let splitName = name.split(' ');
+   
+        // Estraggo le iniziali di nome e cognome e le ricompongo:
+        let initialLetter = splitName[0][0] + splitName[1][0];
 
         // Creo il template per ogni post da inserire e lo stampo:
         const postTemplate = `
@@ -151,7 +152,7 @@ function drawallPosts(postArray) {
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${picsProfile}" alt="${name}">                    
+                    ${picsProfile === null ? `<span class="profile-pic-default">${initialLetter}</span>`: `<img class="profile-pic" src="${picsProfile}" alt="${name}"></img>`}                    
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${name}</div>
