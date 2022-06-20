@@ -13,8 +13,10 @@
 // Milestone 2 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 // Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
 
-// Creo l'array di oggetti che rappresentano ciscun post:
 
+
+
+// Creo l'array di oggetti che rappresenteranno ciascun post:
 const postElements = [
     {
         id: 1,
@@ -37,20 +39,20 @@ const postElements = [
     {
         id: 3,
         name: 'Carlo Bianchi',
-        picsProfile:'https://unsplash.it/300/300?image=97',
+        picsProfile:'https://unsplash.it/300/300?image=63',
         date: '06-20-2022',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, eum, sapiente, rem exercitationem reiciendis iusto itaque labore ex distinctio nostrum dolores neque. Aspernatur asperiores accusantium unde perferendis iure repellat esse.',
-        image:'https://i.picsum.photos/id/300/600/300.jpg?hmac=TqytqAXpB1rmXK7YMTnzToyE8k8PhlAbz8PO7nHMPnw',
+        image:'https://i.picsum.photos/id/83/600/300.jpg?hmac=uRytwnemlALk3_0YaCI64vnGp6LfHOeL5ZYlo_50sC0',
         likes:'725'
     },
     {
         id: 4,
-        name: 'Alfredo Celeste',
-        picsProfile:'https://unsplash.it/300/300?image=29',
+        name: 'Alfredo Nero',
+        picsProfile:'https://unsplash.it/300/300?image=38',
         date: '06-20-2022',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptate dolorum ex! Aut repellendus eum rem tempore, ipsa optio magnam ad dolore alias voluptas. Nemo tenetur excepturi rem ducimus totam!',
-        image:'https://i.picsum.photos/id/300/600/300.jpg?hmac=TqytqAXpB1rmXK7YMTnzToyE8k8PhlAbz8PO7nHMPnw',
-        likes:'725'
+        image:'https://i.picsum.photos/id/28/600/300.jpg?hmac=qff9TJVVoguAsM4oYT2isXBnCfma0HL3rqIRIasvIEM',
+        likes:'672'
     },
     {
         id: 5,
@@ -59,7 +61,7 @@ const postElements = [
         date: '06-20-2022',
         text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus temporibus animi quos voluptate eius praesentium repudiandae aliquid voluptatibus. Debitis, asperiores! Deserunt officiis ratione totam eos recusandae, assumenda quae dolore veniam.',
         image: null,
-        likes:'725'
+        likes:'75'
     },
 ];
 
@@ -67,7 +69,49 @@ const postElements = [
 drawallPosts(postElements)
 
 // ------------------------------------------- //
-//                  FUNCTIONS
+//                EVENT LISTENERS              //
+// ------------------------------------------- //
+
+// Seleziono tutti gli elementi del DOM con le seguenti classi:
+const allLikeBtn = document.querySelectorAll('.js-like-button');
+const allLikesCounter = document.querySelectorAll('js-likes-counter');
+// Eseguo un ciclo for per consulterà tutti gli elementi con la classe selezionata:
+for(let i = 0; i < allLikeBtn.length; i++) {
+
+    // dichiaro la variabile che conterrà il singolo elemento consultato dal ciclo for:
+    const thisLikeBtn = allLikeBtn[i];
+
+    // Associo un evento al rispettivo handler:
+    thisLikeBtn.addEventListener('click', function(event){
+
+        // Elimino il comportamento di default del browser:
+        event.preventDefault();
+
+        // Se l'elemento non contiene la classe 'like-button--liked':
+        if(!this.classList.contains('.like-button--liked')) {
+
+            // Aggiungo la classe 'like-button--liked':
+            this.classList.add('like-button--liked');
+
+            // Dichiaro la variabile che conterrà il singolo contatore dei likes:
+            const relatedLikeCounter = allLikesCounter[i];
+            
+            // Trasformo la stringa in valore numerico:
+            let relatedNumber = parseInt(relatedLikeCounter.innerHTML);
+            console.log(relatedNumber)
+
+            // 
+
+
+        }
+
+    })
+
+}
+
+
+// ------------------------------------------- //
+//                 DOM FUNCTIONS               //
 // ------------------------------------------- //
 
 // Stampo in pagina ogni elemento di postElements:
@@ -112,14 +156,14 @@ function drawallPosts(postArray) {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">80</b> persone
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                     </div>
                 </div> 
             </div>            
         </div>
         `
-        
-
+        // concateno i post:
+        post.innerHTML += postTemplate;
     }
 }
 
