@@ -89,7 +89,7 @@ for(let i = 0; i < allLikeBtn.length; i++) {
         event.preventDefault();
 
         // Se l'elemento non contiene la classe 'like-button--liked':
-        if(!this.classList.contains('like-button--liked')) {
+        this.classList.contains('like-button--liked') 
 
             // Aggiungo la classe 'like-button--liked':
             this.classList.add('like-button--liked');
@@ -105,7 +105,6 @@ for(let i = 0; i < allLikeBtn.length; i++) {
 
             // Stampo il numero incrementato  dentro relatedLikeCounter:
             relatedLikeCounter.innerHTML = relatedNumber;
-        }
     });
 }
 
