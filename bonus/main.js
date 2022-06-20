@@ -133,6 +133,18 @@ function drawallPosts(postArray) {
 
         // con la destrutturazione conservo tutte le key:
         const { name, picsProfile, date, text, image, likes} = thisPost;
+
+        // Splitto la data:
+        let splitDate = date.split("-");
+        // console.log(splitDate[0])
+        // console.log(splitDate[1])
+        // console.log(splitDate[2])
+
+        // ricompongo la data in formato italiano:
+        const italianDate = splitDate[1] + '-' + splitDate[0] + '-' + splitDate[2];
+        console.log(italianDate)
+
+
         // Creo il template per ogni post da inserire e lo stampo:
         const postTemplate = `
         <div class="post">
@@ -143,7 +155,7 @@ function drawallPosts(postArray) {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${name}</div>
-                        <div class="post-meta__time">${date}</div>
+                        <div class="post-meta__time">${italianDate}</div>
                     </div>                    
                 </div>
             </div>
